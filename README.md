@@ -1,5 +1,9 @@
 # 🌤️ TP3 — Application Météo Interactive & Chatbot IA
 
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://coursopendatatp3-53kkbcegsf5ay7i9dh9rvp.streamlit.app/)
+
+**🔗 Démo en ligne accessible ici : [Lancer l'application](https://coursopendatatp3-53kkbcegsf5ay7i9dh9rvp.streamlit.app/)**
+
 Une application Data interactive (disponible en versions **Streamlit** et **Gradio**) permettant d'explorer des données météorologiques enrichies et de dialoguer avec elles via un assistant IA hybride (RAG).
 
 ## ✨ Fonctionnalités
@@ -19,7 +23,7 @@ Une application Data interactive (disponible en versions **Streamlit** et **Grad
 * **Clé API Gemini** (Pour le mode Cloud)
 * **Ollama** (Pour le mode Local - optionnel)
 
-## 📦 Installation
+## 📦 Installation (Local)
 
 ### 1. Cloner le projet
 
@@ -53,7 +57,7 @@ data/
     └── meteo_enriched_2025XXXX_XXXXXX.parquet
 ```
 
-## 🚀 Utilisation
+## 🚀 Utilisation (Local)
 
 Vous avez le choix entre deux interfaces :
 
@@ -71,6 +75,37 @@ uv run python app_gradio.py
 ```
 *Accessible sur : `http://127.0.0.1:7860`*
 
+## 🌐 Déploiement (Streamlit Cloud)
+
+L'application est déployée et accessible publiquement.
+
+Pour mettre à jour ou déployer votre propre version :
+
+### 1. Préparer les dépendances
+Générez le fichier `requirements.txt` indispensable pour le cloud :
+
+``` bash
+uv export --format requirements-txt > requirements.txt
+```
+
+### 2. Mettre à jour GitHub
+Poussez votre code (y compris le fichier `requirements.txt`) :
+
+``` bash
+git add .
+git commit -m "Prep: Ajout requirements.txt pour déploiement"
+git push origin main
+```
+
+### 3. Déployer sur Streamlit Cloud
+1. Connectez-vous sur [share.streamlit.io](https://share.streamlit.io).
+2. Créez une **New app** liée à votre dépôt GitHub.
+3. **IMPORTANT :** Avant de cliquer sur "Deploy", allez dans **Advanced settings** > **Secrets** et ajoutez votre clé API :
+
+``` toml
+GEMINI_API_KEY = "votre_clé_api_ici"
+```
+
 ## 📂 Architecture du Projet
 
 ``` text
@@ -86,6 +121,7 @@ tp3-app/
 │   └── data.py          # Chargement DuckDB & Filtrage
 ├── app_streamlit.py     # Application Principale (Streamlit)
 ├── app_gradio.py        # Application Alternative (Gradio)
+├── requirements.txt     # Dépendances pour le Cloud
 ├── pyproject.toml       # Dépendances (UV)
 ├── README.md            # Documentation
 └── .env                 # Secrets (non versionné)
